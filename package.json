@@ -1,0 +1,25 @@
+{
+  "name": "ANTARYAMI",
+  "version": "1.0.0",
+  "description": "Anataryami",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.heroku.com/antaryami.git"
+  },
+  "keywords": [
+    "MEAN",
+    "Express",
+    "Angular"
+  ],
+   "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "^4.13.3",
+    "mongodb": "^2.0.43",
+	"mocha": "^2.2.4"
+  }
+}
