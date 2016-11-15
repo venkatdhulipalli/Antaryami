@@ -40,13 +40,30 @@ function handleError(res, reason, message, code) {
   res.status(code || 500).json({"error": message});
 }
 
-app.get("/posts/:category", function(req, res) {
-  db.collection(CONTACTS_COLLECTION).findOne({ category: new ObjectID(req.params.category) }, function(err, doc) {
+app.get("/posts", function(req, res) {
+	console.log("IN PSOTS");
+  db.collection(POSTS_COLLECTION).find({}).toArray(function(err, doc) {
     if (err) {
-      handleError(res, err.message, "Failed to get contact");
+      handleError(res, err.message, "Failed to get posts");
     } else {
       res.status(200).json(doc);
     }
   });
 });
 
+/*
+Specific Routing for Specific Parameters
+URL -> localhost:8080/posts/meditation
+*/
+app.get("/posts/:category", function(req, res) {
+	console.log("ID:",req.params.category);
+  db.collection(POSTS_COLLECTION).find({ "category.name": req.params.category }).toArray(function(err, doc) {
+    if (err) {
+      handleError(res, err.message, "Failed to get posts");
+    } else {
+      res.status(200).json(doc);
+    }
+  });
+});
+
+module.exports= app;
